@@ -48,9 +48,9 @@ function App() {
 								className="w-8 bg-red-500 rounded p-1"
 							/>
 
-							<p className="flex items-center">
+							{/* <p className="flex items-center">
 								{id} - {name} {stations_closed_by_schedule === 0 ? "✔️" : "✖"}
-							</p>
+							</p> */}
 						</div>
 					)
 				)}
