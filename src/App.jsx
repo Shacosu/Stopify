@@ -20,19 +20,40 @@ function App() {
 		}
 	};
 	const debounceOnChange = debounce(updateQuery, 500);
+
+	const stateCodes = {
+		0: "Estación operativa",
+		1: "Estación temporalmente cerrada",
+		2: " Estación no habilitada",
+		3: "Estación con accesos cerrados",
+	};
 	return (
 		<>
-			<header className={`bg-slate-800 min-h-20 grid grid-cols-12 md:grid-cols-10 gap-4 p-4 md:place-items-center w-full ${metroLoading ? "hidden" : "block"}` }>
-				{metroData?.lines.map(({ id, name, issues }) => (
-				<div className={` text-white font-bold rounded-lg col-span-6 md:col-span-2 flex gap-1  p-2 ${issues ? "bg-yellow-500"  : "bg-green-400"}`}>
-				<img
-					src="https://www.red.cl/wp-content/themes/red/images/iconos/icono-metro-logo.png"
-					alt="imgMetro"
-					className="w-6 bg-red-500 rounded"
-				/>
-				{id} - {name}
-			</div>
-				))}
+			<header
+				className={`bg-slate-800 min-h-20 grid grid-cols-12 md:grid-cols-10 gap-4 p-4 md:place-items-center w-full ${
+					metroLoading ? "hidden" : "block"
+				}`}
+			>
+				{metroData?.lines.map(
+					({ id, name, issues, stations_closed_by_schedule }, idx) => (
+						<div
+							className={` text-white font-bold rounded-lg col-span-6 md:col-span-2 flex gap-2  p-2 ${
+								issues ? "bg-yellow-500" : "bg-green-400"
+							}`}
+							key={idx}
+						>
+							<img
+								src="https://www.red.cl/wp-content/themes/red/images/iconos/icono-metro-logo.png"
+								alt="imgMetro"
+								className="w-8 bg-red-500 rounded p-1"
+							/>
+
+							<p className="flex items-center">
+								{id} - {name} {stations_closed_by_schedule === 0 ? "✔️" : "✖"}
+							</p>
+						</div>
+					)
+				)}
 			</header>
 			<div className="container mx-auto p-10">
 				<h3>{data?.name}</h3>
@@ -61,11 +82,12 @@ function App() {
 							className="border p-2 w-full mt-2"
 							onChange={debounceOnChange}
 						/>
-						<div className="md:w-1/6 min-h-[12rem] bg-white shadow-lg rounded p-4 border mt-2 text-sm">
+						<div className=" min-h-[12rem] bg-white shadow-lg rounded p-4 border mt-2 text-sm">
 							{data?.services.map(({ id, status_description, buses }, idx) => (
 								<div className="my-2 border p-2" key={idx}>
 									<p className="font-bold text-base">
-										<span className="border-b border-black text-yellow-600">{id}</span> - {status_description}
+										<span className="border-b border-black text-yellow-600">{id}</span> -{" "}
+										{status_description}
 									</p>
 									{buses.map(
 										({ id, max_arrival_time, meters_distance, min_arrival_time }, idx) => (
