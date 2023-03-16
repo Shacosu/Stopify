@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { IconUserCircle, IconBookmark, IconMenu2, IconCash } from '@tabler/icons-react';
 import { useGetMetroDataQuery } from "../services/getDataXor";
+import BurgerMenu from "./BurgerMenu";
 
 export default function Header() {
 	const { data, error, isLoading } = useGetMetroDataQuery();
@@ -8,7 +9,7 @@ export default function Header() {
 		<header className={`bg-slate-800 min-h-20  w-full ${isLoading ? "hidden" : "block"}`}>
 			<nav className="w-full bg-yellow-500 h-10 flex justify-around items-center">
 				<div>
-					<h1 className=" font-bold">Stopify</h1>
+					<Link to="/" className=" font-bold">Stopify</Link>
 				</div>
 				<p className=" flex items-center font-bold text-red-500">Lineas de Metro </p>
 				<div className="hidden items-center gap-2 md:flex">
@@ -24,7 +25,7 @@ export default function Header() {
 					</Link>
 				</div>
 				<div className="md:hidden flex items-center">
-					<IconMenu2 />
+					<BurgerMenu />
 				</div>
 			</nav>
 			<div className=" grid grid-cols-7 md:grid-cols-7 gap-4 p-4  place-items-center">

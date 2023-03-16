@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import debounce from "lodash.debounce";
 import { useGetStopIdQuery } from "../services/getDataXor";
+import Loading from "../components/Loading";
 
 export default function Metro() {
     const [busId, setBusId] = useState("PI1396");
@@ -13,13 +14,12 @@ export default function Metro() {
 	};
     const debounceOnChange = debounce(updateQuery, 300);
 
-    setInterval(() => {
-        refetch();
-    }, 15000)
-
-    // useEffect(()=> {
-    //     count > 0 ? setTimeout(() => setCount(count - 1), 1000) : setCount(15);
-    // }, [count])
+    useEffect(()=> {
+		const updateInterval = setInterval(() => {
+			refetch();
+		}, 15000)
+        return () => clearInterval(updateInterval);
+    }, [])
 
   return (
 <div className="container mx-auto p-10">
@@ -30,14 +30,7 @@ export default function Metro() {
 					</p>
 				)}
 				{isLoading & !data ? (
-					<div className=" w-full h-[calc(100vh-24rem)]  flex justify-center ">
-						<div className="flex flex-col w-full  items-center">
-							<span className="font-black text-xl mb-4">Stopify</span>
-							<div className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-tr from-slate-500 to-slate-900 animate-spin">
-								<div className="h-9 w-9 rounded-full bg-gray-200"></div>
-							</div>
-						</div>
-					</div>
+					<Loading />
 				) : (
 					<div>
 						<h2 className="text-2xl">
