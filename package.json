@@ -10,10 +10,12 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.3",
+    "@tabler/icons-react": "^2.10.0",
     "lodash.debounce": "^4.0.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-redux": "^8.0.5"
+    "react-redux": "^8.0.5",
+    "react-router-dom": "^6.9.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",
