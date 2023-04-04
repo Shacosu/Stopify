@@ -25,13 +25,13 @@ export default function Header() {
             </div>
             <ul className="MENU-LINK-MOBILE-OPEN flex flex-col items-center justify-between min-h-[250px]">
               <li className="border-b border-gray-400 my-8 uppercase">
-                <Link href="/">Inicio</Link>
+                <Link to="/" onClick={() => setIsNavOpen(false)}>Inicio</Link>
               </li>
               <li className="border-b border-gray-400 my-8 uppercase">
-                <Link href="/balance">Saldo BIP/TNE</Link>
+                <Link to="/balance" onClick={() => setIsNavOpen(false)}>Saldo BIP/TNE</Link>
               </li>
               <li className="border-b border-gray-400 my-8 uppercase">
-                <Link href="/contacto">Contacto</Link>
+                <Link to="/contacto" onClick={() => setIsNavOpen(false)}>Contacto</Link>
               </li>
             </ul>
           </div>
@@ -39,13 +39,13 @@ export default function Header() {
 
         <ul className="DESKTOP-MENU hidden space-x-8 lg:flex">
           <li>
-            <Link href="/">Inicio</Link>
+            <Link to="/">Inicio</Link>
           </li>
           <li>
-            <Link href="/balance">Saldo BIP/TNE</Link>
+            <Link to="/balance">Saldo BIP/TNE</Link>
           </li>
           <li>
-            <Link href="/contacto">Contacto</Link>
+            <Link to="/contacto">Contacto</Link>
           </li>
         </ul>
       </nav>
