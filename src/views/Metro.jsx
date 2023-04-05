@@ -22,7 +22,7 @@ export default function Metro() {
         return () => clearInterval(updateInterval);
     }, [])
 
-	console.log(data);
+	console.log(data?.name);
   return (
 <div className="container mx-auto p-10">
 				<h3>{data?.name}</h3>
@@ -47,7 +47,7 @@ export default function Metro() {
                         
 						<div className=" min-h-[12rem] bg-white shadow-lg rounded p-4 border mt-2 text-sm">
                             
-							{/* {[...data?.services].sort((a, b) => a.id > b.id ? 1 : -1).map(({ id, status_description, buses }, idx) => (
+							{[...data?.services].sort((a, b) => a.id > b.id ? 1 : -1).map(({ id, status_description, buses }, idx) => (
 								<div className="my-2 border p-2" key={idx}>
 									<p className="font-bold text-base">
 										<span className="border-b border-black text-yellow-600">{id}</span> -{" "}
@@ -68,7 +68,7 @@ export default function Metro() {
 										)
 									)}
 								</div>
-							))} */}
+							))}
                         <p>La información se actualiza cada 15 segundo!</p>
 						</div>
 					</div>
